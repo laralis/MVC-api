@@ -7,3 +7,6 @@ const carsController = new CarsController();
 
 router.get("/cars", carsController.getAll);
 router.get("/cars/:id", carsController.getOne);
+router.put("/cars/:id", carsController.update);
+router.post("/cars", carsController.insert);
+router.delete("/cars/:id", carsController.delete);
