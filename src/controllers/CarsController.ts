@@ -20,7 +20,7 @@ export class CarsController {
     const id = req.params.id;
     const newRow = req.body;
     const carModel = new CarModel();
-    const result = await carModel.update(+id, newRow);
+    const result = await carModel.update(id, newRow);
     res.send(result);
   }
   async insert(req: Request, res: Response) {

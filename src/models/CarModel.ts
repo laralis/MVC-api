@@ -16,18 +16,18 @@ export class CarModel {
     await connection.end();
     return result[0];
   }
-  async update(
-    id: number,
-    { name, description }: { name?: string; description?: string }
-  ) {
+  async update(id: string, row: { name?: string; description?: string }) {
+    const keys = Object.keys(row);
+    const values = Object.values(row);
+    const fields = keys.map((item) => `${item}=?`).join(",");
+    values.push(id);
     const connection = await createConnection();
     const [result] = await connection.execute(
       `UPDATE cars
-      SET name = ?,
-      description = ?
+      SET ${fields}
       WHERE id = ?;
       `,
-      [name, description, id]
+      values
     );
     await connection.end();
     return result;
